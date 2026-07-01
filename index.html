@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Scene — Phase 2</title>
+  <link rel="stylesheet" href="./Style.css">
+</head>
+<body>
+
+<div id="loading-screen">
+  <div id="loading-title">Loading...<br>Please wait a few seconds</div>
+  <div id="loading-bar-track"><div id="loading-bar-fill"></div></div>
+  <div id="loading-percent">0%</div>
+</div>
+
+<div id="rotate-notice">
+  <div class="rotate-icon">📱</div>
+  <p>Please rotate your phone for a better experience!</p>
+</div>
+
+<div id="scene-wrap">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+  }
+}
+</script>
+
+
+
+</div>
+
+<div id="frame-blur-overlay"></div>
+
+<div id="music-player-overlay">
+  <div id="music-player-modal">
+    <div class="mp-header">
+      <div class="mp-header-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+        <span>Phonograph</span>
+      </div>
+      <button id="mp-close-btn" title="Close" aria-label="Close music player">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="mp-now-playing">
+      <div class="mp-disk" id="mp-disk">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#d4af37" opacity="0.2"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+      </div>
+      <h3 class="mp-title" id="mp-current-title">Select a track</h3>
+      <p class="mp-subtitle">Orchestral Suite</p>
+    </div>
+
+    <div class="mp-controls">
+      <div class="mp-time-row">
+        <span id="mp-time-current">0:00</span>
+        <span id="mp-time-total">3:30</span>
+      </div>
+      <div class="mp-progress" id="mp-progress">
+        <div class="mp-progress-bar" id="mp-progress-bar"></div>
+      </div>
+      <div class="mp-btn-row">
+        <button class="mp-ctrl-btn" id="mp-prev-btn" title="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button class="mp-ctrl-btn" id="mp-play-btn" title="Play / Pause">
+          <svg id="mp-play-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="mp-pause-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button class="mp-ctrl-btn" id="mp-next-btn" title="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mp-playlist">
+      <ul id="mp-playlist-ul" style="list-style:none;"></ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="book-overlay">
+  <button id="book-close-btn" title="Close" aria-label="Close book">✕</button>
+  <iframe id="book-frame" title="Interactive birthday book"></iframe>
+</div>
+
+
+
+
+
+  <script type="module" src="./Script.js" defer></script>
+</body>
+</html>
