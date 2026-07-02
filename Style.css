@@ -51,38 +51,6 @@
     }
 
     
-    #rotate-notice {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-      background: rgba(12, 9, 6, 0.94);
-      text-align: center;
-      padding: 24px;
-    }
-    #rotate-notice.show { display: flex; }
-    #rotate-notice .rotate-icon {
-      font-size: 40px;
-      animation: rotate-tilt 1.6s ease-in-out infinite;
-    }
-    #rotate-notice p {
-      font-family: 'Lato', Arial, sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      letter-spacing: 0.03em;
-      color: rgba(255, 230, 190, 0.9);
-      max-width: 260px;
-    }
-    @keyframes rotate-tilt {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(90deg); }
-    }
-
-    
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap');
 
     

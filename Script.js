@@ -30,20 +30,8 @@ loadingManager.onError = (url) => {
   console.error('Error loading:', url);
 };
 
-const rotateNoticeEl = document.getElementById('rotate-notice');
 const isMobileDevice = /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent) ||
   (navigator.maxTouchPoints > 1 && /Macintosh/i.test(navigator.userAgent));
-
-function updateRotateNotice() {
-  if (!isMobileDevice) return;
-  const isPortrait = window.innerHeight > window.innerWidth;
-  rotateNoticeEl.classList.toggle('show', isPortrait);
-}
-if (isMobileDevice) {
-  updateRotateNotice();
-  window.addEventListener('resize', updateRotateNotice);
-  window.addEventListener('orientationchange', updateRotateNotice);
-}
 
 const CAM_X   = 0;
 const CAM_Y   = 1.05;
