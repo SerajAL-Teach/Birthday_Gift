@@ -47,8 +47,26 @@ if (isMobileDevice) {
 
 const CAM_X   = 0;
 const CAM_Y   = 1.05;
-const CAM_Z   = isMobileDevice ? 0.85 : 1.1;
-const CAM_FOV = isMobileDevice ? 56 : 62;  
+
+/* Mobile camera is aspect-dependent so it stays framed correctly across
+   phone rotation and different device aspect ratios. Narrower (more square)
+   aspects need the camera closer/wider FOV to still hide the wall edges;
+   wider aspects (typical landscape) need it closer to the desktop framing. */
+function computeMobileCam(aspect) {
+  const minAspect = 1.3;   
+  const maxAspect = 2.2;   
+  const t = THREE.MathUtils.clamp((aspect - minAspect) / (maxAspect - minAspect), 0, 1);
+  return {
+    z:   THREE.MathUtils.lerp(0.72, 0.95, t),
+    fov: THREE.MathUtils.lerp(60, 52, t),
+  };
+}
+
+const initialAspect = window.innerWidth / window.innerHeight;
+const initialMobileCam = isMobileDevice ? computeMobileCam(initialAspect) : null;
+
+const CAM_Z   = isMobileDevice ? initialMobileCam.z : 1.1;
+const CAM_FOV = isMobileDevice ? initialMobileCam.fov : 62;  
 
 const CAM_LOOK_X = 0;
 const CAM_LOOK_Y = 1.18;
@@ -2958,10 +2976,24 @@ function updateMusicSparkles(delta, now) {
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
+
+  if (isMobileDevice) {
+    const { z, fov } = computeMobileCam(camera.aspect);
+    CAM_BASE.z = z;
+    camera.fov = fov;
+    if (frameZoomProgress === 0 && !frameZoomActive) {
+      camera.position.set(CAM_BASE.x, CAM_BASE.y, CAM_BASE.z);
+    }
+  }
+
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   composer.setSize(window.innerWidth, window.innerHeight);
   if (bokehPass.uniforms.aspect) bokehPass.uniforms.aspect.value = camera.aspect;
+});
+window.addEventListener('orientationchange', () => {
+  
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 250);
 });
 
 const clock = new THREE.Clock();
