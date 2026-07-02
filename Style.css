@@ -1,4 +1,4 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; background: #1a1714; overflow: hidden; }
     canvas { display: block; }
 
@@ -130,6 +130,18 @@
       opacity: 1;
     }
 
+    @media (max-width: 640px) {
+      #music-player-overlay {
+        padding-left: 0;
+        justify-content: center;
+        align-items: center;
+      }
+      #music-player-modal {
+        max-height: 88dvh;
+        max-height: 88vh;
+      }
+    }
+
     #music-player-modal {
       background: linear-gradient(160deg, rgba(28,20,14,0.92), rgba(14,10,8,0.94));
       border: 1px solid rgba(212,175,55,0.28);
@@ -138,8 +150,10 @@
       width: 320px;
       max-width: 86vw;
       max-height: 80vh;
+      max-height: 80dvh;
       display: flex;
       flex-direction: column;
+      min-height: 0;
       transform: scale(0.92) translateY(14px);
       opacity: 0;
       transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.3s ease;
@@ -221,6 +235,8 @@
     .mp-playlist {
       flex: 1; overflow-y: auto; border-top: 1px solid rgba(212,175,55,0.18);
       background: rgba(0,0,0,0.25); border-radius: 0 0 14px 14px;
+      min-height: 0;
+      -webkit-overflow-scrolling: touch;
     }
     .mp-playlist::-webkit-scrollbar { width: 4px; }
     .mp-playlist::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.35); border-radius: 4px; }
@@ -300,3 +316,4 @@
       border-color: rgba(255,210,100,0.55);
       transform: scale(1.06);
     }
+  
